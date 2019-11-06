@@ -1,0 +1,78 @@
+{
+  "name": "react-mobile-router",
+  "version": "0.0.1",
+  "description": "React移动端WEB路由",
+  "main": "lib/index.js",
+  "author": "allen peng",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "example": "webpack-dev-server --config scripts/webpack.dev.conf.js",
+    "webpack-dev-server": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
+    "build:es": "babel src --out-dir es && cleancss -o es/Router.css src/Router.css",
+    "build:umd": "cross-env NODE_ENV=development rollup -c -o dist/react-mobile-router.js",
+    "build:umd:min": "cross-env NODE_ENV=production rollup -c -o dist/react-mobile-router.min.js",
+    "build": "npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min"
+  },
+  "files": [
+    "es",
+    "dist",
+    "lib"
+  ],
+  "keywords": [
+    "react",
+    "reactjs",
+    "router",
+    "mobile"
+  ],
+  "module": "es/index.js",
+  "peerDependencies": {
+    "react": "^15.0.0-0 || ^16.0.0-0"
+  },
+  "dependencies": {
+    "babel-plugin-dev-expression": "^0.2.2",
+    "babel-plugin-import": "^1.12.2",
+    "clean-css-cli": "^4.3.0",
+    "eslint": "^6.6.0",
+    "history": "^4.10.1",
+    "mini-create-react-context": "^0.3.2",
+    "path-to-regexp": "^3.1.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-hot-loader": "^4.12.15",
+    "react-is": "^16.11.0",
+    "react-transition-group": "^4.3.0",
+    "tiny-invariant": "^1.0.6",
+    "tiny-warning": "^1.0.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-react": "^7.6.3",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
+    "cross-env": "^6.0.3",
+    "cross-spawn": "^7.0.1",
+    "css-loader": "^3.2.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-react": "^7.16.0",
+    "html-webpack-plugin": "^3.2.0",
+    "rollup": "^1.26.3",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-postcss": "^2.0.3",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-terser": "^5.1.2",
+    "rollup-plugin-uglify": "^6.0.3",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  }
+}

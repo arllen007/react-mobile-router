@@ -1,0 +1,57 @@
+.router-root {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+}
+
+.router-load-mask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 99999;
+    background-color: transparent;
+}
+
+.page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    overflow: auto;
+    background-color: #ffffff;
+}
+
+.fade-enter {
+    opacity: 0.01;
+}
+.fade-enter-active {
+    opacity: 1;
+    transition: opacity 300ms ease-in;
+}
+.fade-exit {
+    opacity: 1;
+}
+.fade-exit-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+}
+
+.translate-enter {
+    transform: translateX(100%);
+}
+.translate-enter-active {
+    transform: translateX(0);
+    transition: transform 300ms ease-in;
+}
+.translate-exit {
+    transform: translateX(0);
+}
+.translate-exit-active {
+    transform: translateX(100%);
+    transition: transform 300ms ease-in;
+}
