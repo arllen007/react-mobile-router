@@ -32,7 +32,9 @@ class Route extends React.Component {
                         ? matchPath(location.pathname, this.props)
                         : context.match;
 
-                    const props = { ...context, location, match };
+                    const props = { ...context, location, match, ref: C => {
+                            context.registComponent(context.index, C);
+                        } };
 
                     let { children, component, render } = this.props;
 
@@ -40,26 +42,27 @@ class Route extends React.Component {
                         children = null;
                     }
                     if (match && match.isExact) {
+                        const componentNode = props.match
+                            ? children
+                                ? typeof children === 'function'
+                                    ? __DEV__
+                                        ? evalChildrenDev(children, props, this.props.path)
+                                        : children(props)
+                                    : children
+                                : component
+                                    ? React.createElement(component, props)
+                                    : render
+                                        ? render (props)
+                                        : null
+                            : typeof children === 'function'
+                                ? __DEV__
+                                    ? evalChildrenDev(children, props, this.props.path)
+                                    : children(props)
+                                : null;
                         return (
                             <div className="page" style={{zIndex: context.index}}>
                                 <RouterContext.Provider value={props}>
-                                    {props.match
-                                        ? children
-                                            ? typeof children === 'function'
-                                                ? __DEV__
-                                                    ? evalChildrenDev(children, props, this.props.path)
-                                                    : children(props)
-                                                : children
-                                            : component
-                                                ? React.createElement(component, props)
-                                                : render
-                                                    ? render (props)
-                                                    : null
-                                        : typeof children === 'function'
-                                            ? __DEV__
-                                                ? evalChildrenDev(children, props, this.props.path)
-                                                : children(props)
-                                            : null}
+                                    {componentNode}
                                 </RouterContext.Provider>
                             </div>
                         );

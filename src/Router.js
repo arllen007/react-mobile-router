@@ -18,6 +18,7 @@ class Router extends React.Component {
 
         this._isMounted = false;
         this._pendingLocation = null;
+        this._routeComponentMaps = {};
 
         if (!props.staticContext) {
             this.unlisten = props.history.listen((location, action) => {
@@ -47,6 +48,7 @@ class Router extends React.Component {
         this.onEntered = this.onEntered.bind(this);
         this.onExit = this.onExit.bind(this);
         this.onExited = this.onExited.bind(this);
+        this.registComponent = this.registComponent.bind(this);
     }
     static computeRootMatch(pathname) {
         return { path: '/', url: '/', params: {}, isExact: pathname === '/' };
@@ -86,8 +88,15 @@ class Router extends React.Component {
         this.setState({
             isTranslating: false
         });
+        const component = this._routeComponentMaps[this.state.locationStack.length - 1];
+        if (component && component.componentResume) {
+            component.componentResume();
+        }
     }
 
+    registComponent(index, component) {
+        this._routeComponentMaps[index] = component;
+    }
     render() {
         return (
             <div className="router-root">
@@ -111,7 +120,8 @@ class Router extends React.Component {
                                 history: this.props.history,
                                 location: location,
                                 match: Router.computeRootMatch(location.pathname),
-                                staticContext: this.props.staticContext
+                                staticContext: this.props.staticContext,
+                                registComponent: this.registComponent
                             }} />
                         </CSSTransition>
                     ))

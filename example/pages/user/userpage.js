@@ -1,5 +1,4 @@
 import React from 'react';
-import { hot } from 'react-hot-loader';
 import Link from '../../../src/Link';
 
 const style = (index) => {
@@ -12,12 +11,17 @@ const style = (index) => {
   }
 };
 
-class UserPage extends React.Component {
+export class UserPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             userList: []
         }
+        this.name = ['张三', '李四', '王五', '赵七', '钱九', '孙狗'][this.props.index % 6];
+    }
+
+    componentResume() {
+        console.log(`我${this.name}又回来了！！！`);
     }
 
     render() {
@@ -26,7 +30,7 @@ class UserPage extends React.Component {
                 <button onClick={() => {
                     this.props.history.goBack();
                 }}>返回</button>
-                <h3>这是用户页面,还有什么需要处理的？</h3>
+                <h3>这是用户{this.name}的页面！！</h3>
                 <br />
                 <button onClick={() => {
                     this.state.userList.push(`用户${this.state.userList.length + 1}`);
@@ -43,7 +47,5 @@ class UserPage extends React.Component {
         );
     }
 }
-
-export default hot(module)(UserPage);
 
 
