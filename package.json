@@ -1,6 +1,6 @@
 {
   "name": "react-mobile-router",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "React移动端WEB路由",
   "main": "lib/index.js",
   "author": "allen peng",
@@ -27,6 +27,7 @@
     "mobile"
   ],
   "module": "es/index.js",
+  "types": "index.d.ts",
   "peerDependencies": {
     "react": "^15.0.0-0 || ^16.0.0-0"
   },
@@ -71,6 +72,7 @@
     "rollup-plugin-terser": "^5.1.2",
     "rollup-plugin-uglify": "^6.0.3",
     "style-loader": "^1.0.0",
+    "tern": "^0.24.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0"
