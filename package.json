@@ -18,7 +18,8 @@
   "files": [
     "es",
     "dist",
-    "lib"
+    "lib",
+    "index.d.ts"
   ],
   "keywords": [
     "react",
@@ -27,7 +28,7 @@
     "mobile"
   ],
   "module": "es/index.js",
-  "types": "index.d.ts",
+  "types": "./index.d.ts",
   "peerDependencies": {
     "react": "^15.0.0-0 || ^16.0.0-0"
   },
